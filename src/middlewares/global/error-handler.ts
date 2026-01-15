@@ -1,5 +1,6 @@
 import type { ErrorHandler } from "hono";
 import { HTTPError } from "@utils/http-error";
+import { UniversitasService } from "@services/data-master/universitas.service";
 import { ZodError } from "zod";
 
 export const onErrorHandler: ErrorHandler = (err, c) => {
