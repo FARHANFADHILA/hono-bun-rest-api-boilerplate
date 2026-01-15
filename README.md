@@ -2,6 +2,83 @@
 
 Project ini adalah boilerplate Backend menggunakan **Hono** dan **Bun**, yang dibangun dengan prinsip **Clean Architecture** (Layered Architecture). Struktur ini dirancang untuk skalabilitas, kemudahan maintenance, dan penerapan prinsip **SOLID**.
 
+---
+
+## 🛠️ Tech Stack
+
+Berikut adalah teknologi yang digunakan dalam project ini:
+
+### Core Technologies
+
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **[Bun](https://bun.sh/)** | Latest | ⚡ JavaScript runtime yang super cepat (pengganti Node.js) |
+| **[Hono](https://hono.dev/)** | ^4.11.3 | 🔥 Web framework ultralight & ultra-fast untuk edge computing |
+| **[TypeScript](https://www.typescriptlang.org/)** | ^5 | 📘 Superset JavaScript dengan type safety |
+
+### Database & ORM
+
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **[Prisma](https://www.prisma.io/)** | ^7.2.0 | 🗄️ Next-generation ORM untuk TypeScript & Node.js |
+| **[Prisma Adapter PG](https://www.prisma.io/docs/orm/overview/databases/postgresql)** | ^7.2.0 | 🔌 PostgreSQL adapter untuk Prisma |
+| **[pg](https://node-postgres.com/)** | ^8.16.3 | 🐘 PostgreSQL client untuk Node.js dengan connection pooling |
+
+### Dependency Injection
+
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **[TSyringe](https://github.com/microsoft/tsyringe)** | ^4.10.0 | 💉 Lightweight dependency injection container untuk TypeScript |
+| **[reflect-metadata](https://www.npmjs.com/package/reflect-metadata)** | ^0.2.2 | 🪞 Polyfill untuk Metadata Reflection API (required untuk TSyringe) |
+
+### Validation
+
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **[Zod](https://zod.dev/)** | ^4.3.5 | ✅ TypeScript-first schema validation dengan static type inference |
+
+### Code Quality & Formatting
+
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **[Prettier](https://prettier.io/)** | ^3.8.0 | 💅 Opinionated code formatter untuk konsistensi kode |
+| **[prettier-plugin-organize-imports](https://www.npmjs.com/package/prettier-plugin-organize-imports)** | ^4.3.0 | 📦 Plugin Prettier untuk auto-organize imports |
+| **[Husky](https://typicode.github.io/husky/)** | ^9.1.7 | 🐶 Git hooks untuk menjalankan script sebelum commit/push |
+| **[lint-staged](https://github.com/okonet/lint-staged)** | ^16.2.7 | 🎯 Run linters hanya pada staged files (pre-commit) |
+
+### Logging
+
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **[Pino](https://getpino.io/)** | ^10.2.0 | 📝 Super fast, low overhead logging library |
+| **[hono-pino](https://www.npmjs.com/package/hono-pino)** | ^0.10.3 | 🔗 Pino logger middleware untuk Hono |
+| **[pino-pretty](https://github.com/pinojs/pino-pretty)** | ^13.1.3 | 🎨 Prettifier untuk Pino logs (development only) |
+
+### Development Tools
+
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **[@types/bun](https://www.npmjs.com/package/@types/bun)** | ^1.3.5 | 📦 TypeScript definitions untuk Bun |
+| **[@types/node](https://www.npmjs.com/package/@types/node)** | ^25.0.8 | 📦 TypeScript definitions untuk Node.js |
+| **[@types/pg](https://www.npmjs.com/package/@types/pg)** | ^8.16.0 | 📦 TypeScript definitions untuk pg |
+| **[dotenv](https://www.npmjs.com/package/dotenv)** | ^17.2.3 | 🔐 Load environment variables dari `.env` file |
+
+---
+
+## ✨ Key Features
+
+- ✅ **Clean Architecture** - Separation of concerns dengan layered architecture
+- ✅ **Dependency Injection** - Menggunakan TSyringe untuk IoC (Inversion of Control)
+- ✅ **Type Safety** - Full TypeScript support dengan Zod validation
+- ✅ **Fast Performance** - Bun runtime + Hono framework = blazing fast ⚡
+- ✅ **Database Pooling** - PostgreSQL connection pooling untuk performa optimal
+- ✅ **Auto Formatting** - Prettier + Husky untuk code consistency
+- ✅ **Structured Logging** - Pino logger dengan pretty print untuk development
+- ✅ **Error Handling** - Global error handler dengan custom HTTPError class
+- ✅ **SOLID Principles** - Mengikuti best practices OOP
+
+---
+
 ## 📂 Struktur Folder (The Anatomy)
 
 Berikut adalah peta mental dari struktur folder proyek ini. Setiap folder memiliki tanggung jawab spesifik (Single Responsibility Principle).
