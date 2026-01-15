@@ -3,12 +3,6 @@ import type { ErrorHandler } from 'hono';
 import { ZodError } from 'zod';
 
 export const onErrorHandler: ErrorHandler = (err, c) => {
-  console.log('=== GLOBAL ERROR HANDLER ===');
-  console.log('Error type:', err?.constructor?.name);
-  console.log('Error instanceof HTTPError:', err instanceof HTTPError);
-  console.log('Error instanceof ZodError:', err instanceof ZodError);
-  console.log('Full error:', err);
-
   if (err instanceof HTTPError) {
     console.log('Handling as HTTPError with status:', err.statusCode);
 
