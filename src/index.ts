@@ -8,9 +8,7 @@ import { onErrorHandler } from "@middlewares/global/error-handler";
 const app = new Hono();
 
 app.onError(onErrorHandler);
-
 app.use("*", loggerMiddleware());
-
 app.get("/", (c) => {
   return c.text("Hello Hono ! Server is running 🚀");
 });
