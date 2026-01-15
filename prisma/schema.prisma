@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model Universitas {
+  // 1. Primary Key menggunakan UUID v4
+  id          String    @id @default(uuid()) @db.Uuid
+
+  // 2. Kolom data dengan batasan panjang karakter (VarChar) & Unique
+  nama        String    @unique @db.VarChar(100)
+  akronim     String    @unique @db.VarChar(60)
+
+  // 3. Kolom Audit (Siapa yang membuat/mengedit)
+  // Tanda '?' berarti boleh NULL (Optional sesuai gambar)
+  created_by  String?   @db.Uuid
+  updated_by  String?   @db.Uuid
+
+  // 4. Timestamp (Kapan dibuat/diedit)
+  created_at  DateTime  @default(now())
+  updated_at  DateTime? @updatedAt 
+
+  fakultas    Fakultas[]
+  // Agar nama tabel di database tetap lowercase "universitas"
+  @@map("universitas")
+}
+
+model Fakultas {
+	id String @id @default(uuid()) @db.Uuid
+	kode String @unique @db.VarChar(10)
+	nama String @unique @db.VarChar(60)
+
+	created_by String? @db.Uuid
+	updated_by String? @db.Uuid
+	created_at DateTime @default(now())
+	updated_at DateTime? @updatedAt
+	
+	id_universitas String @db.Uuid
+	// Saya tambahkan 'onDelete: Cascade' agar jika Universitas dihapus, Fakultas di bawahnya ikut terhapus (opsional)
+    universitas    Universitas @relation(fields: [id_universitas], references: [id], onDelete: Cascade)
+	@@map("fakultas")
+}
