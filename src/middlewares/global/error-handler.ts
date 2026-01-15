@@ -14,7 +14,6 @@ export const onErrorHandler: ErrorHandler = (err, c) => {
   }
 
   if (err instanceof ZodError) {
-    console.log('Handling as ZodError');
     return c.json(
       {
         response: false,

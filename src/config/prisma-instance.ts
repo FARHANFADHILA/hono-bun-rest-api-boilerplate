@@ -1,6 +1,6 @@
-import { Pool } from "pg";
-import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "../../generated/prisma/client";
+import { PrismaPg } from '@prisma/adapter-pg';
+import { Pool } from 'pg';
+import { PrismaClient } from '../../generated/prisma/client';
 
 const connectionString = `${process.env.DATABASE_URL}`;
 
@@ -13,13 +13,10 @@ const pool = new Pool({
 });
 
 const adapter = new PrismaPg(pool);
-console.log("STATUS ENV SAAT INI:", process.env.NODE_ENV);
+console.log('STATUS ENV SAAT INI:', '🔥🔥', process.env.NODE_ENV);
 const prisma = new PrismaClient({
   adapter,
-  log:
-    process.env.NODE_ENV === "development"
-      ? ["query", "error", "warn"]
-      : ["error"],
+  log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
 });
 
 export { prisma };
