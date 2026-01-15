@@ -1,17 +1,16 @@
-import type { ErrorHandler } from "hono";
-import { HTTPError } from "@utils/http-error";
-import { UniversitasService } from "@services/data-master/universitas.service";
-import { ZodError } from "zod";
+import { HTTPError } from '@utils/http-error';
+import type { ErrorHandler } from 'hono';
+import { ZodError } from 'zod';
 
 export const onErrorHandler: ErrorHandler = (err, c) => {
-  console.log("=== GLOBAL ERROR HANDLER ===");
-  console.log("Error type:", err?.constructor?.name);
-  console.log("Error instanceof HTTPError:", err instanceof HTTPError);
-  console.log("Error instanceof ZodError:", err instanceof ZodError);
-  console.log("Full error:", err);
+  console.log('=== GLOBAL ERROR HANDLER ===');
+  console.log('Error type:', err?.constructor?.name);
+  console.log('Error instanceof HTTPError:', err instanceof HTTPError);
+  console.log('Error instanceof ZodError:', err instanceof ZodError);
+  console.log('Full error:', err);
 
   if (err instanceof HTTPError) {
-    console.log("Handling as HTTPError with status:", err.statusCode);
+    console.log('Handling as HTTPError with status:', err.statusCode);
 
     return c.json(
       {
@@ -23,11 +22,11 @@ export const onErrorHandler: ErrorHandler = (err, c) => {
   }
 
   if (err instanceof ZodError) {
-    console.log("Handling as ZodError");
+    console.log('Handling as ZodError');
     return c.json(
       {
         response: false,
-        message: "Validation error",
+        message: 'Validation error',
         errors: err.issues,
       },
       400,
@@ -35,11 +34,11 @@ export const onErrorHandler: ErrorHandler = (err, c) => {
   }
 
   // Handle generic errors
-  console.error("Handling as generic error");
+  console.error('Handling as generic error');
   return c.json(
     {
       response: false,
-      message: err instanceof Error ? err.message : "Internal server error",
+      message: err instanceof Error ? err.message : 'Internal server error',
     },
     500,
   );
