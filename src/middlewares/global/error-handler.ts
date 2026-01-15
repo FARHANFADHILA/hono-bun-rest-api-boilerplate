@@ -4,8 +4,6 @@ import { ZodError } from 'zod';
 
 export const onErrorHandler: ErrorHandler = (err, c) => {
   if (err instanceof HTTPError) {
-    console.log('Handling as HTTPError with status:', err.statusCode);
-
     return c.json(
       {
         response: false,
