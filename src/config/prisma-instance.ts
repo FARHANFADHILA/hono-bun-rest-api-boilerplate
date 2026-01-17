@@ -1,6 +1,6 @@
+import { PrismaClient } from '@generated/prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
-import { PrismaClient } from '../../generated/prisma/client';
 
 const connectionString = `${process.env.DATABASE_URL}`;
 
@@ -8,7 +8,7 @@ const connectionString = `${process.env.DATABASE_URL}`;
 const pool = new Pool({
   connectionString,
   max: 20, // Maximum pool size
-  idleTimeoutMillis: 30000, // Close idle connections after 30s
+  idleTimeoutMillis: 60000, // Close idle connections after 30s
   connectionTimeoutMillis: 2000, // Timeout after 2s
 });
 
