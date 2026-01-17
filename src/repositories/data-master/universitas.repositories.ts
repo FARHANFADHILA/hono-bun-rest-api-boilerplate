@@ -1,16 +1,18 @@
-import type {
-  PrismaClient,
-  Universitas,
-  Prisma,
-} from "@generated/prisma/client";
-import { injectable, inject } from "tsyringe";
+import type { Prisma, PrismaClient } from '@generated/prisma/client';
+import { inject, injectable } from 'tsyringe';
 
 @injectable()
 export class UniversitasRepositories {
-  constructor(@inject("PrismaClient") private prisma: PrismaClient) {}
+  constructor(@inject('PrismaClient') private prisma: PrismaClient) {}
 
   async getAllUniversitas() {
-    return await this.prisma.universitas.findMany();
+    return await this.prisma.universitas.findMany({
+      select: {
+        id: true,
+        nama: true,
+        akronim: true,
+      },
+    });
   }
 
   async createUniversitas(data: Prisma.UniversitasCreateInput) {

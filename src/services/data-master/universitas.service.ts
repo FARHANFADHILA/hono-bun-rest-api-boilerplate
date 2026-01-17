@@ -45,6 +45,13 @@ export class UniversitasService {
         if (error.code === 'P2025') {
           throw new HTTPError(404, 'Data universitas tidak ditemukan.');
         }
+
+        if (error.code === 'P2003') {
+          throw new HTTPError(
+            400,
+            'Data universitas tidak dapat dihapus karena ada fakultas yang terkait.',
+          );
+        }
       }
       throw error;
     }

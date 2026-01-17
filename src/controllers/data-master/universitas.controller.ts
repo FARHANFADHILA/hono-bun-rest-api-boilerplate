@@ -1,11 +1,12 @@
 // src/controllers/data-master/universitas.controller.ts
-import { injectable } from "tsyringe";
-import type { Context } from "hono";
-import { UniversitasService } from "@services/data-master/universitas.service";
+import { UniversitasService } from '@services/data-master/universitas.service';
 import {
   createUniversitasSchema,
   deleteUniversitasSchema,
-} from "@validations/data-master/universitas.validation";
+  updateUniversitasSchema,
+} from '@validations/data-master/universitas.validation';
+import type { Context } from 'hono';
+import { injectable } from 'tsyringe';
 @injectable()
 export class UniversitasController {
   constructor(private universitasService: UniversitasService) {}
@@ -16,7 +17,7 @@ export class UniversitasController {
     return c.json(
       {
         response: true,
-        message: "List Universitas",
+        message: 'List Universitas',
         data: result,
       },
       200,
@@ -30,7 +31,7 @@ export class UniversitasController {
     return c.json(
       {
         response: true,
-        message: "Berhasil dibuat",
+        message: 'Berhasil dibuat',
         data: result,
       },
       201,
@@ -38,16 +39,29 @@ export class UniversitasController {
   };
 
   deleteUniversitas = async (c: Context) => {
-    const id = c.req.param("id");
+    const id = c.req.param('id');
     const validated = deleteUniversitasSchema.parse({ id });
-    const result = await this.universitasService.deleteUniversitas(
-      validated.id,
-    );
+    const result = await this.universitasService.deleteUniversitas(validated.id);
 
     return c.json(
       {
         response: true,
-        message: "Berhasil dihapus",
+        message: 'Berhasil dihapus',
+        data: result,
+      },
+      200,
+    );
+  };
+
+  updateUniversitas = async (c: Context) => {
+    const id = c.req.param('id');
+    const body = await c.req.json();
+    const validated = updateUniversitasSchema.parse({ id, ...body });
+    const result = await this.universitasService.updateUniversitas(validated.id, validated);
+    return c.json(
+      {
+        response: true,
+        message: 'Berhasil diupdate',
         data: result,
       },
       200,
