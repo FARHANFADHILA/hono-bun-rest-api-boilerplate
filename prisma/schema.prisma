@@ -48,6 +48,6 @@ model Fakultas {
 	
 	id_universitas String @db.Uuid
 	// Saya tambahkan 'onDelete: Cascade' agar jika Universitas dihapus, Fakultas di bawahnya ikut terhapus (opsional)
-    universitas    Universitas @relation(fields: [id_universitas], references: [id], onDelete: Cascade)
+    universitas    Universitas @relation(fields: [id_universitas], references: [id], onDelete: Restrict)
 	@@map("fakultas")
 }
